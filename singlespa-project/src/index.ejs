@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <title>Estudo Single SPA</title>
+
+  <script src="https://cdn.jsdelivr.net/npm/regenerator-runtime@0.13.7/runtime.min.js"></script>
+  <meta http-equiv="Content-Security-Policy"
+    content="default-src 'self' https: localhost:*; script-src 'unsafe-inline' 'unsafe-eval' https: localhost:*; connect-src https: localhost:* ws://localhost:*; style-src 'unsafe-inline' https:; object-src 'none';" />
+
+  <meta name="importmap-type" content="systemjs-importmap" />
+  <script type="systemjs-importmap">
+    {
+        "imports": {
+          "single-spa": "https://cdn.jsdelivr.net/npm/single-spa@5.9.0/lib/system/single-spa.min.js",
+          "react": "https://unpkg.com/react@18/umd/react.production.min.js",
+          "react-dom": "https://unpkg.com/react-dom@18/umd/react-dom.production.min.js",
+          "react-router-dom": "https://unpkg.com/react-router-dom@5.2.0/umd/react-router-dom.min.js"
+        }
+      }
+    </script>
+  <!-- importando um módulo single-spa baseado no arquivo cdn -->
+  <!-- essa biblioteca é que vai baixar o arquivo .js -->
+  <link rel="preload" href="https://cdn.jsdelivr.net/npm/single-spa@5.9.0/lib/system/single-spa.min.js" as="script" />
+  <!-- esse preload vai carregar a single-spa -->
+  <% if (isLocal) { %>
+  <script type="systemjs-importmap">
+    {
+          "imports": {
+            "@mc/root-config": "//localhost:9000/mc-root-config.js",
+            "@mc/react-header": "//localhost:8700/mc-react-header.js",
+            "@mc/react-single": "//localhost:8500/mc-react-single.js",
+            "@mc/react-multiples": "//localhost:8502/mc-react-multiples.js",
+            "@mc/react-lazy": "//localhost:8800/mc-react-lazy.js",
+            "@mc/react-parcel": "//localhost:8501/mc-react-parcel.js",
+            "@mc/react-route": "//localhost:8503/mc-react-route.js",
+            "@mc/utils": "//localhost:8600/mc-utils.js"
+          }
+        }
+      </script>
+  <% } %>
+  <!-- //parcel mf q carrega dentro de outro -->
+  <!-- //route mf q carrega um parcel -->
+  <!-- //single é um mf -->
+  <!-- //mulriples carrega as coisas ... -->
+  <script src="https://cdn.jsdelivr.net/npm/import-map-overrides@2.2.0/dist/import-map-overrides.js"></script>
+  <% if (isLocal) { %>
+  <script src="https://cdn.jsdelivr.net/npm/systemjs@6.8.3/dist/system.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/systemjs@6.8.3/dist/extras/amd.js"></script>
+  <% } else { %>
+  <script src="https://cdn.jsdelivr.net/npm/systemjs@6.8.3/dist/system.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/systemjs@6.8.3/dist/extras/amd.min.js"></script>
+  <% } %>
+  <!-- se não for local vai baixar os arquivos minificados -->
+</head>
+
+<body>
+  <noscript> You need to enable JavaScript to run this app. </noscript>
+  <main></main>
+  <script>
+    System.import("@mc/root-config");
+    // mesmo nome que foi definido ali em cima
+  </script>
+  <import-map-overrides-full show-when-local-storage="devtools" dev-libs></import-map-overrides-full>
+</body>
+
+</html>
