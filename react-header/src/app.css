@@ -1,0 +1,21 @@
+header {
+    background-color: #0c0c0c;
+    color: #ffffff;
+    padding: 1rem;
+}
+
+.nav-link {
+    color: #ffffff;
+    text-transform: uppercase;
+    text-decoration: none;
+}
+
+ul {
+    list-style: none;
+    display: flex;
+}
+
+ul li {
+    margin-left: 1%;
+    color: #ffffff;
+}
