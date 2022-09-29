@@ -14,4 +14,5 @@
 - Compartilhar um componente header entre todos os micro front-end
 - Registrar micro front-end de forma dinâmica
 
+-----
 OBS: Não foi publicado para teste. Roda apenas localmente iniciando cada projeto nas suas respectivas portas descritas no index.ejs do orquestrador. 
